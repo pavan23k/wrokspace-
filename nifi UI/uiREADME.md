@@ -1,5 +1,5 @@
-# bpe_ui_rest
-Blue Planet: Enterprise bpe_ui_rest  
+# bpe_UI
+Blue Planet: Enterprise bpe_ui
 
 #### Prerequisites
 
@@ -17,17 +17,17 @@ Blue Planet: Enterprise bpe_ui_rest
 * using the deployment scripts
 
 
-**Bitbucket repository** -  https://bitbucket.ciena.com/projects/BP_ENTERPRISE/repos/bpe_ui_rest/browse
+**Bitbucket repository** -  https://bitbucket.ciena.com/projects/BP_ENTERPRISE/repos/bpe_ui/browse
 
 
-###Build a pipeline in Teamcity using makefile Script###
+###Build a pipeline in Teamcity using Makefile Script###
 
 
-**Teamcity :BP_Enterprise>UI Apps>Enterprise UI REST** https://teamcity.ciena.com/blueplanet/admin/editBuildRunners.html?id=buildType:bp_enterprise_ui_apps_bpe_ui
+**Teamcity :BP_Enterprise>UI Apps>Enterprise UI** - https://teamcity.ciena.com/blueplanet/admin/editBuild.html?id=buildType:bp_enterprise_ui_apps_bpe_ui
 
-* Name: Enterprise UI REST
+* Name: Enterprise UI
 
-* Build configuration ID: bp_enterprise_ui_apps_bpe_ui_rest
+* Build configuration ID: bp_enterprise_ui_apps_bpe_ui
 
 
 **Create an image and push it to ECR**
@@ -71,10 +71,8 @@ _before running the build enable the build step_
 * you can see the ECR Repository is created
 
 ```     		
-Repository name : bpe_ui_rest
-          Image :
-        Image URL: 906862171241.dkr.ecr.us-east-1.amazonaws.com/bpe_ui_rest
-
+Repository name : bpe_ui
+        Image URL: 906862171241.dkr.ecr.us-east-1.amazonaws.com/bpe_ui
 ```
 
 **->Build Step : Deploying kubernetes Cluster**
@@ -82,13 +80,12 @@ This will deploy in dev namespace
 
 * Name: deploy-dev
 
-* Working directory: Blue Planet: Enterprise/bpe_ui_rest/k8s (add your Repository)
+* Working directory: Blue Planet: Enterprise/bpe_ui/k8s (add your Repository)
 
 * Custom script: (Enter build script content):
 
 ```
 make deploy_dev
-
 ```
 
 * Run the build
@@ -107,10 +104,10 @@ $Kubectl get pods,svc -n dev
 ~~~~
 ~~~
 NAME                  TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
-service/bpe-ui-rest   ClusterIP   10.100.136.177   <none>        8080/TCP   2d
+service/bpe-ui        ClusterIP   10.100.99.9      <none>        80/TCP     2d
 
-NAME                               READY   STATUS    RESTARTS   AGE
-pod/bpe-ui-rest-65bb7fd98c-8bkvx   2/2     Running   0          2d
+NAME                               READY   STATUS             RESTARTS   AGE
+pod/bpe-ui-5966657cdd-ssp5q        2/2     Running            0          4d
 ~~~
 
-##### bpe_ui_rest is running successfully
+##### bpe_ui is running successfully
